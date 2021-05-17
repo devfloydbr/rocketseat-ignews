@@ -57,7 +57,7 @@ export default function PostPreview({ post }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
     fallback: 'blocking'
@@ -85,6 +85,7 @@ export const getStaticProps: GetStaticProps = async ({ params}) => {
   return {
     props: {
       post
-    }
+    },
+    redirect: 60 * 30
   }
 }
