@@ -7,7 +7,12 @@ export function Header() {
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
-        <Image src="/images/logo.svg" alt="dev.floyd Next App" />
+        <Image
+          src="/images/logo.svg"
+          alt="dev.floyd Next App"
+          width={110}
+          height={31}
+        />
 
         <nav>
           <ActiveLink activeClassName={styles.active} href="/">
