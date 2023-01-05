@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { getPrismicClient } from '../../../services/prismic'
 
 import styles from '../post.module.scss'
+import { ParsedUrlQuery } from 'querystring'
 
 interface Props {
   post: {
@@ -16,6 +17,10 @@ interface Props {
     content: string
     updatedAt: string
   }
+}
+
+interface IParams extends ParsedUrlQuery {
+  slug: string
 }
 
 export default function PostPreview({ post }: Props) {
@@ -64,8 +69,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // @ts-ignore
-  const { slug } = params
+  const { slug } = params as IParams
 
   const prismic = getPrismicClient()
 

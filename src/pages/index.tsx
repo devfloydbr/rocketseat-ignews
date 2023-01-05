@@ -19,7 +19,7 @@ export default function Home({ product }: HomeProps) {
   return (
     <>
       <Head>
-        <title>dev.floyd Next App</title>
+        <title>IgNews</title>
       </Head>
 
       <main className={styles.contentContainer}>
@@ -38,8 +38,8 @@ export default function Home({ product }: HomeProps) {
         <Image
           src="/images/avatar.svg"
           alt="Girl coding"
-          width={336}
-          height={251}
+          width={382}
+          height={578}
         />
       </main>
     </>
@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     amount: new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD'
-    }).format(data.unit_amount ?? 0 / 100)
+    }).format((data.unit_amount ?? 0) / 100)
   }
 
   return {

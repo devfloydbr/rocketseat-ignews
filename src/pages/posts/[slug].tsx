@@ -7,7 +7,7 @@ import { getPrismicClient } from '../../services/prismic'
 import styles from './post.module.scss'
 import { ParsedUrlQuery } from 'querystring'
 
-export interface QParams extends ParsedUrlQuery {
+interface IParams extends ParsedUrlQuery {
   slug: string
 }
 
@@ -42,17 +42,13 @@ export default function Post({ post }: Props) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<
-  any,
-  QParams,
-  any
-> = async ({ req, params }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  params
+}) => {
   const session = await getSession({ req })
 
-  // @ts-ignore
-  const { slug } = params
-
-  console.log('session', session)
+  const { slug } = params as IParams
 
   if (!session?.activeSubscription) {
     return {
@@ -63,7 +59,7 @@ export const getServerSideProps: GetServerSideProps<
     }
   }
 
-  const prismic = getPrismicClient(req)
+  const prismic = getPrismicClient()
 
   const response = await prismic.getByUID('posts', String(slug), {})
 
